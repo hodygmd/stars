@@ -12,13 +12,13 @@ export default function App() {
                 <Router>
                     <div className="border-right p-3" id="sidebar">
                         <div>
-                            <a href={"#"}>
+                            <p>
                                 <h3 className="text-light">
                                     Menu
                                     <img className="float-end" id="imgPerfil"
                                          src="https://cdn.pixabay.com/photo/2023/03/06/13/58/logo-7833521_1280.png"/>
                                 </h3>
-                            </a>
+                            </p>
                         </div>
                         <hr/>
                         <div className="list-group list-reset">
