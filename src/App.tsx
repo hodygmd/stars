@@ -12,7 +12,7 @@ export default function App() {
                 <Router>
                     <div className="border-right p-3" id="sidebar">
                         <div>
-                            <a>
+                            <a href={"#"}>
                                 <h3 className="text-light">
                                     Menu
                                     <img className="float-end" id="imgPerfil"
