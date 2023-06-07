@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Table} from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {DistanceUnit} from "../Interfaces/Star";
 import axios from "axios";
 import '../App.css';

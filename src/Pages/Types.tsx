@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Link, Outlet, Route, Routes} from "react-router-dom";
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Table} from 'reactstrap';
-import {DistanceUnit, Type} from "../Interfaces/Star";
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Type} from "../Interfaces/Star";
 import axios from "axios";
-//import './style.css'
 
 export default function Types() {
     const baseUrl: any = process.env.REACT_APP_API_URL_TYPES
