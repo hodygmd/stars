@@ -16,7 +16,7 @@ export default function App() {
                                 <h3 className="text-light">
                                     Menu
                                     <img className="float-end" id="imgPerfil"
-                                         src="https://cdn.pixabay.com/photo/2023/03/06/13/58/logo-7833521_1280.png"/>
+                                         src="https://cdn.pixabay.com/photo/2023/03/06/13/58/logo-7833521_1280.png" alt={"menu"}/>
                                 </h3>
                             </p>
                         </div>
