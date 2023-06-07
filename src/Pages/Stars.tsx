@@ -4,13 +4,14 @@ import {DistanceUnit, Star, Type} from "../Interfaces/Star";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 const Stars: React.FC = () => {
-    const baseUrl: string = 'http://localhost:8080'
+    const baseUrl: any = process.env.REACT_APP_API_URL_STARS
+    const apiKey: any = process.env.REACT_APP_API_KEY
     const [data, setData] = useState<Star[]>([]);
     const [distance, setDistance] = useState<DistanceUnit[]>([]);
     const [type, setType] = useState<Type[]>([]);
 
     useEffect(() => {
-        axios.get<Star[]>(`${baseUrl}/stars`)
+        axios.get<Star[]>(`${baseUrl}/stars?${apiKey}`)
             .then(response => {
                 //console.log(response.data)
                 setData(response.data);
@@ -20,7 +21,7 @@ const Stars: React.FC = () => {
             });
     }, []);
     useEffect(() => {
-        axios.get<DistanceUnit[]>(`${baseUrl}/distance_units`)
+        axios.get<DistanceUnit[]>(`${baseUrl}/distance_units?${apiKey}`)
             .then(response => {
                 //console.log(response.data)
                 setDistance(response.data)
@@ -30,7 +31,7 @@ const Stars: React.FC = () => {
             });
     }, []);
     useEffect(() => {
-        axios.get<Type[]>(`${baseUrl}/star-types`)
+        axios.get<Type[]>(`${baseUrl}/star-types?${apiKey}`)
             .then(response => {
                 //console.log(response.data)
                 setType(response.data)
@@ -78,7 +79,7 @@ const Stars: React.FC = () => {
         let typ=type[idType-1].type
         let desc=type[idType-1].description
         if (!edit) {
-            axios.post<Star>(`${baseUrl}/stars`, {
+            axios.post<Star>(`${baseUrl}/stars?${apiKey}`, {
                 name: name,
                 mass: mass,
                 id_distance_unit: {id: idDist, unit: unit, status: 1},
@@ -115,7 +116,7 @@ const Stars: React.FC = () => {
                     console.log(error);
                 });
         } else {
-            axios.put<Star>(`${baseUrl}/stars/${data[indexToEdit].id}`, {
+            axios.put<Star>(`${baseUrl}/stars/${data[indexToEdit].id}?${apiKey}`, {
                 id: data[indexToEdit].id,
                 name: name,
                 mass: mass,
@@ -150,7 +151,7 @@ const Stars: React.FC = () => {
         setShowModal(false)
     }
     const deleteElement = (id: number, name: string, mass: number, id_distance_unit: number, unit: string, distance: number, id_type: number, type: string, desc: string) => {
-        axios.put<Star>(`${baseUrl}/stars/remove/${id}`, {
+        axios.put<Star>(`${baseUrl}/stars/remove/${id}?${apiKey}`, {
             id: id,
             name: name,
             mass: mass,

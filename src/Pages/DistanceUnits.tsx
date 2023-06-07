@@ -5,11 +5,12 @@ import axios from "axios";
 import '../App.css';
 
 export default function DistanceUnits() {
-    const baseUrl: string = 'http://localhost:8080/distance_units'
+    const baseUrl: any = process.env.REACT_APP_API_URL_DISTANCE_UNITS
+    const apiKey: any = process.env.REACT_APP_API_KEY
     const [data, setData] = useState<DistanceUnit[]>([]);
 
     useEffect(() => {
-        axios.get<DistanceUnit[]>(`${baseUrl}`)
+        axios.get<DistanceUnit[]>(`${baseUrl}?${apiKey}`)
             .then(response => {
                 console.log(response.data)
                 setData(response.data);
@@ -38,7 +39,7 @@ export default function DistanceUnits() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!edit) {
-            axios.post<DistanceUnit>(`${baseUrl}`, {unit: unit, status: 1})
+            axios.post<DistanceUnit>(`${baseUrl}?${apiKey}`, {unit: unit, status: 1})
                 .then(response => {
                     console.log(response.data)
                     const newData: DistanceUnit[] = [
@@ -51,7 +52,7 @@ export default function DistanceUnits() {
                     console.log(error);
                 });
         } else {
-            axios.put<DistanceUnit>(`${baseUrl}/${data[indexToEdit].id}`, {
+            axios.put<DistanceUnit>(`${baseUrl}/${data[indexToEdit].id}?${apiKey}`, {
                 id: data[indexToEdit].id,
                 unit: unit,
                 status: 1
@@ -75,7 +76,7 @@ export default function DistanceUnits() {
         setShowModal(false)
     }
     const deleteElement = (id: number, unit: string) => {
-        axios.put<DistanceUnit>(`${baseUrl}/remove/${id}`, {id: id, unit: unit, status: 0})
+        axios.put<DistanceUnit>(`${baseUrl}/remove/${id}?${apiKey}`, {id: id, unit: unit, status: 0})
             .then(response => {
                 setData(data.filter(obj => obj.id !== id))
             })

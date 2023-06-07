@@ -6,11 +6,12 @@ import axios from "axios";
 //import './style.css'
 
 export default function Types() {
-    const baseUrl: string = 'http://localhost:8080/star-types'
+    const baseUrl: any = process.env.REACT_APP_API_URL_TYPES
+    const apiKey: any = process.env.REACT_APP_API_KEY
     const [data, setData] = useState<Type[]>([]);
 
     useEffect(() => {
-        axios.get<Type[]>(`${baseUrl}`)
+        axios.get<Type[]>(`${baseUrl}?${apiKey}`)
             .then(response => {
                 console.log(response.data)
                 setData(response.data);
@@ -44,7 +45,7 @@ export default function Types() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!edit) {
-            axios.post<Type>(`${baseUrl}`, {type: type, description: desc, status: 1})
+            axios.post<Type>(`${baseUrl}?${apiKey}`, {type: type, description: desc, status: 1})
                 .then(response => {
                     console.log(response.data)
                     const newData: Type[] = [
@@ -62,7 +63,7 @@ export default function Types() {
                     console.log(error);
                 });
         } else {
-            axios.put<Type>(`${baseUrl}/${data[indexToEdit].id}`, {
+            axios.put<Type>(`${baseUrl}/${data[indexToEdit].id}?${apiKey}`, {
                 id: data[indexToEdit].id,
                 type: type,
                 description: desc,
@@ -88,7 +89,7 @@ export default function Types() {
         setShowModal(false)
     }
     const deleteElement = (id: number, type: string, desc: string) => {
-        axios.put<Type>(`${baseUrl}/remove/${id}`, {id: id, type: type, description: desc, status: 0})
+        axios.put<Type>(`${baseUrl}/remove/${id}?${apiKey}`, {id: id, type: type, description: desc, status: 0})
             .then(response => {
                 setData(data.filter(obj => obj.id !== id))
             })
