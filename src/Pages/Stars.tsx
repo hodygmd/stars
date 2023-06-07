@@ -4,7 +4,7 @@ import {DistanceUnit, Star, Type} from "../Interfaces/Star";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 const Stars: React.FC = () => {
-    const baseUrl: string = "http://ec2-52-15-232-167.us-east-2.compute.amazonaws.com:8081"
+    const baseUrl: string = "http://ec2-3-141-42-138.us-east-2.compute.amazonaws.com:8081"
     const apiKey: string = "apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWxpIiwiaWQiOjIsImlhdCI6MTY4NjEyNzk5OSwiZXhwIjoxNjg2OTkxOTk5fQ.0IJKVscnGy7MEHCJKMFmRiBNNyRuG3-qfuWEEQ-yNqg"
     const [data, setData] = useState<Star[]>([]);
     const [distance, setDistance] = useState<DistanceUnit[]>([]);
